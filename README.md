@@ -30,6 +30,13 @@ job_scheduler/ # Main directory
 1. **Clone the Repository**
    ```bash
    git clone <your-private-repo-url>
-   cd job_scheduler```
+   cd job_scheduler
 
-1. **Clone the Repository**
+2. **Make job_scheduler executable**
+   ```bash
+   chmod +x job_scheduler
+
+3. **(Optional) Add to your ~/.bashrc for easy access**
+   ```bash
+   echo 'export PATH="$HOME/job_scheduler:$PATH"' >> ~/.bashrc
+   source ~/.bashrc
