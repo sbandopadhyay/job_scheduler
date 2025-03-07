@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Default config file path (same directory as this script)
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+MODULES_DIR="$SCRIPT_DIR/modules"
+CONFIG_FILE="$SCRIPT_DIR/job_scheduler.config"
+
+# Load custom config if provided
+if [[ "$1" == "--config" ]]; then
+    if [[ -f "$2" ]]; then
+        CONFIG_FILE="$2"
+        shift 2
+    else
+        echo "❌ Error: Config file '$2' not found."
+        exit 1
+    fi
+fi
+
+# Ensure config file exists
+if [[ ! -f "$CONFIG_FILE" ]]; then
+    cat <<EOF > "$CONFIG_FILE"
+# CONFIG FILE: job_scheduler.config
+JOB_DIR=$HOME/job_logs
+ARCHIVE_DIR=\$JOB_DIR/archive
+ARCHIVE_THRESHOLD=100
+LOG_FILE_NAME="job_XXX.log"
+WATCH_REFRESH_INTERVAL=3
+EOF
+    echo "✅ Default config file created: $CONFIG_FILE"
+fi
+
+# Load config
+source "$CONFIG_FILE"
+
+# Ensure job directories exist
+mkdir -p "$JOB_DIR"
+mkdir -p "$ARCHIVE_DIR"
+
+# Execute the corresponding module
+case "$1" in
+    "-run") source "$MODULES_DIR/001-run.mod" "$2" ;;
+    "-status") source "$MODULES_DIR/002-status.mod" ;;
+    "-list") source "$MODULES_DIR/003-list.mod" ;;
+    "-kill") source "$MODULES_DIR/004-kill.mod" "$2" ;;
+    "-archive") source "$MODULES_DIR/005-archive.mod" ;;
+    "-watch") source "$MODULES_DIR/006-watch.mod" "$2" ;;
+    "--help") source "$MODULES_DIR/000-help.mod" ;;
+    *)
+        echo "❌ Unrecognized command: '$1'. Use 'job_scheduler --help' for valid commands."
+        exit 1
+        ;;
+esac
+
