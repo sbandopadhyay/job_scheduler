@@ -4,11 +4,11 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 
 ## 🚀 Features
 ✅ **Start & track jobs** (`-run <job>.run`)  
-✅ **List running & completed jobs** (`status`, `list`)  
-✅ **Kill jobs easily** (`kill <job_id/all>`)  
+✅ **List running & completed jobs** (`-status`, `list`)  
+✅ **Kill jobs easily** (`-kill <job_id/all>`)  
 ✅ **Monitor jobs in real-time** (`-watch <job_id/all>`)  
 ✅ **Automatic job logging** (`job_001.log`, `job_002.log`, etc.)  
-✅ **Auto-archive completed jobs** (`archive` command)  
+✅ **Auto-archive completed jobs** (`-archive` command)  
 ✅ **Fully modular** (`modules/` folder for each command)  
 ✅ **Configurable settings** (`job_scheduler.config`)  
 
@@ -62,7 +62,7 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 2. **Checking Job Status**
    - Check status with :
    ```bash
-   job_scheduler status
+   job_scheduler -status
    ```
    
    - Example Output:
@@ -75,7 +75,7 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 3. **Listing All Jobs**
    - List all jobs with :
    ```bash
-   job_scheduler list
+   job_scheduler -list
    ```
    
    - Example Output:
@@ -88,8 +88,8 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 4. **Killing a Job**
    - Kill any one or all jobs with :
    ```bash
-   job_scheduler kill job_001  # Kill a specific job
-   job_scheduler kill all       # Kill all running jobs
+   job_scheduler -kill job_001  # Kill a specific job
+   job_scheduler -kill all       # Kill all running jobs
    ```
 
 5. **Monitoring Jobs Live**
