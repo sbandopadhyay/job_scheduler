@@ -131,8 +131,12 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 
 ## 🔮 To-do List
 
-- Add job priority levels (low, normal, high)
-- Web-based dashboard for job management
-- Python API integration
-- More detailed resource monitoring (CPU, RAM, Disk)
+   - Add job priority levels (low, normal, high)
+   - Web-based dashboard for job management
+   - Python API integration
+   - More detailed resource monitoring (CPU, RAM, Disk)
 
+
+
+## 🤝 Suggestions
+Feel free to suggest improvements or feature ideas! 😊
