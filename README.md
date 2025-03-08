@@ -58,7 +58,7 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
    job_scheduler -run myjob.run
 
 2. **Checking Job Status**
-   
+   - Check status with :
    ```bash
    job_scheduler status
    
