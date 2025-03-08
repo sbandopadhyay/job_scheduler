@@ -41,7 +41,7 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 
 3. **(Optional) Add to your ~/.bashrc for easy access**
    ```bash
-   echo 'export PATH="$HOME/job_scheduler:$PATH"' >> ~/.bashrc
+   echo 'export PATH="$HOME/<PATH-to-the src_JS folder>/job_scheduler:$PATH"' >> ~/.bashrc
    source ~/.bashrc
    ```
 
