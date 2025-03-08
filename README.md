@@ -14,10 +14,10 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 
 ## 📂 Folder Structure
 
--job_scheduler/             # Main directory
--├── job_scheduler          # Main script
--├── job_scheduler.config   # Config file (user settings)
--└── modules/               # Stores individual command scripts
+- job_scheduler/             # Main directory
+- ├── job_scheduler          # Main script
+- ├── job_scheduler.config   # Config file (user settings)
+- └── modules/               # Stores individual command scripts
 -   ├── 001-run.mod
 -   ├── 002-status.mod
 -   ├── 003-list.mod
