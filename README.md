@@ -13,17 +13,19 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 ✅ **Configurable settings** (`job_scheduler.config`)  
 
 ## 📂 Folder Structure
-job_scheduler/ # Main directory 
-│── job_scheduler # Main script 
-│── job_scheduler.config # Config file (user settings) 
-│── modules/ # Stores individual command scripts 
-│ ├── 001-run.mod 
-│ ├── 002-status.mod 
-│ ├── 003-list.mod 
-│ ├── 004-kill.mod 
-│ ├── 005-archive.mod 
-│ ├── 006-watch.mod 
-│ ├── 007-help.mod
+job_scheduler/             # Main directory
+├── job_scheduler          # Main script
+├── job_scheduler.config   # Config file (user settings)
+└── modules/               # Stores individual command scripts
+    ├── 001-run.mod
+    ├── 002-status.mod
+    ├── 003-list.mod
+    ├── 004-kill.mod
+    ├── 005-archive.mod
+    ├── 006-watch.mod
+    └── 007-help.mod
+
+
 
 
 ## 🛠 Installation & Setup
