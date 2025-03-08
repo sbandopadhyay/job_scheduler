@@ -102,7 +102,7 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 6. **Archiving Completed Jobs**
    - Archive the completed jobs with :
    ```bash
-   job_scheduler archive
+   job_scheduler -archive
    ```
    
    - Example Output:
