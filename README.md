@@ -125,3 +125,10 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 | 🟠 **Auto-archives jobs**   | ✅ Yes | ❌ No | ❌ No |
 
 
+## 🔮 To-do List
+
+- Add job priority levels (low, normal, high)
+- Web-based dashboard for job management
+- Python API integration
+- More detailed resource monitoring (CPU, RAM, Disk)
+
