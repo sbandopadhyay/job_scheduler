@@ -50,6 +50,10 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 ## 🔧 Usage
 1. **Running a Job**
    
-   Create a .run file with the command:
+- Create a .run file with the command:
    ```bash
    echo "mpirun -np 4 ./mpi_test" > myjob.run
+
+- Start the job:
+   ```bash
+   job_scheduler -run myjob.run
