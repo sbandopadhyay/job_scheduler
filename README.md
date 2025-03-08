@@ -84,3 +84,41 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
    ✅ job_001 (Active)
    ❌ job_002 (Completed)
    ```
+
+4. **Killing a Job**
+   - Kill any one or all jobs with :
+   ```bash
+   job_scheduler kill job_001  # Kill a specific job
+   job_scheduler kill all       # Kill all running jobs
+   ```
+
+5. **Monitoring Jobs Live**
+   - Monitor any one or all jobs with :
+   ```bash
+   job_scheduler -watch job_001  # Monitor one job
+   job_scheduler -watch all      # Monitor all jobs
+   ```
+
+6. **Archiving Completed Jobs**
+   - Archive the completed jobs with :
+   ```bash
+   job_scheduler archive
+   ```
+   
+   - Example Output:
+   ```pgsql
+   📦 Archiving completed jobs to batch 001...
+   ✅ Moved job_002 to archive batch 001.
+   🎯 Archive complete! View old jobs in /home/user/job_logs/archive/001/
+   ```
+
+
+## 📊 Comparison with Other Job Schedulers
+
+Feature	job_scheduler	tmux + bash	GNU Parallel
+Tracks jobs	✅ Yes	❌ No	❌ No
+Auto logs each job	✅ Yes	❌ No	✅ Yes
+Auto-indexed job IDs	✅ Yes	❌ No	❌ No
+Easy job termination	✅ Yes	❌ No	❌ No
+Live monitoring	✅ Yes	❌ No	❌ No
+Auto-archives jobs	✅ Yes	❌ No	❌ No
