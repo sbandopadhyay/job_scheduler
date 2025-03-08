@@ -114,13 +114,12 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 
 
 ## 📊 Comparison with Other Job Schedulers
-```
-|Feature|	job_scheduler|	tmux + bash|	GNU Parallel|
-:-----:  :-----:  :-----:   :-----:
-|Tracks jobs |	✅ Yes |	❌ No |	❌ No |
-|Auto logs each job|	✅ Yes |	❌ No |	✅ Yes |
-|Auto-indexed job IDs|	✅ Yes |	❌ No |	❌ No |
-|Easy job termination|	✅ Yes |	❌ No |	❌ No |
-|Live monitoring     |	✅ Yes |	❌ No |	❌ No |
-|Auto-archives jobs |	✅ Yes |	❌ No |	❌ No |
-```
+
+| **Feature**                | **job_scheduler**  | **tmux + bash**  | **GNU Parallel** |
+|----------------------------|-------------------|------------------|------------------|
+| **Tracks jobs** | ✅ Yes  | ❌ No | ❌ No |
+| **Auto logs each job** | ✅ Yes  | ❌ No | ✅ Yes |
+| **Auto-indexed job IDs** | ✅ Yes  | ❌ No | ❌ No |
+| **Easy job termination** | ✅ Yes | ❌ No | ❌ No |
+| **Live monitoring** | ✅ Yes | ❌ No | ❌ No |
+| **Auto-archives jobs** | ✅ Yes | ❌ No | ❌ No |
