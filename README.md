@@ -32,35 +32,42 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
    ```bash
    git clone <your-private-repo-url>
    cd job_scheduler
+   ```
 
 2. **Make job_scheduler executable**
    ```bash
    chmod +x job_scheduler
+   ```
 
 3. **(Optional) Add to your ~/.bashrc for easy access**
    ```bash
    echo 'export PATH="$HOME/job_scheduler:$PATH"' >> ~/.bashrc
    source ~/.bashrc
+   ```
 
 
 ## 🔧 Usage
 1. **Running a Job**
    
-   ***Create a .run file with the command:***
+   - Create a .run file with the command:
    ```bash
    echo "mpirun -np 4 ./mpi_test" > myjob.run
+   ```
 
-   ***Start the job:***
+   - Start the job:
    ```bash
    job_scheduler -run myjob.run
+   ```
 
 2. **Checking Job Status**
    - Check status with :
    ```bash
    job_scheduler status
+   ```
    
    - Example Output:
    ```bash
    🔍 Checking running jobs...
    ✅ job_001 is running (PID: 12345)
    📌 Log file: job_logs/job_001/job_001.log
+   ```
