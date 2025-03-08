@@ -66,8 +66,21 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
    ```
    
    - Example Output:
-   ```bash
+   ```scss
    🔍 Checking running jobs...
    ✅ job_001 is running (PID: 12345)
    📌 Log file: job_logs/job_001/job_001.log
+   ```
+
+3. **Listing All Jobs**
+   - List all jobs with :
+   ```bash
+   job_scheduler list
+   ```
+   
+   - Example Output:
+   ```scss
+   📜 Listing all jobs...
+   ✅ job_001 (Active)
+   ❌ job_002 (Completed)
    ```
