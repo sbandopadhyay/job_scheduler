@@ -39,7 +39,7 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 
 2. **Make job_scheduler executable**
    ```bash
-   chmod +x job_scheduler'''
+   chmod +x job_scheduler
 
 3. **(Optional) Add to your ~/.bashrc for easy access**
    ```bash
@@ -53,6 +53,9 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
    - Create a .run file with the command:
    ```bash
    echo "mpirun -np 4 ./mpi_test" > myjob.run
+
+
+
    - Start the job:
    ```bash
    job_scheduler -run myjob.run
