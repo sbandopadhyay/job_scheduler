@@ -125,6 +125,10 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 | 🟠 **Auto-archives jobs**   | ✅ Yes | ❌ No | ❌ No |
 
 
+
+
+
+
 ## 🔮 To-do List
 
 - Add job priority levels (low, normal, high)
