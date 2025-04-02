@@ -1,5 +1,6 @@
 #!/bin/bash
-echo "🔍 Checking running jobs..."
+echo "🔍 Checking job status..."
+echo "Running Jobs:"
 for folder in "$JOB_DIR"/job_*; do
     if [[ -d "$folder" && -f "$folder/job.pid" ]]; then
         JOB_PID=$(cat "$folder/job.pid")
@@ -11,4 +12,9 @@ for folder in "$JOB_DIR"/job_*; do
         fi
     fi
 done
-
+echo "Queued Jobs:"
+for queued in "$QUEUE_DIR"/*.run; do
+    if [[ -f "$queued" ]]; then
+        echo "⏳ $(basename "$queued" .run)"
+    fi
+done

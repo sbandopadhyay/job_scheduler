@@ -7,7 +7,6 @@ fi
 while true; do
     clear
     echo "🔍 Monitoring jobs (Updated: $(date))"
-
     for folder in "$JOB_DIR"/job_*; do
         if [[ -d "$folder" && -f "$folder/job.pid" ]]; then
             JOB_PID=$(cat "$folder/job.pid")
@@ -16,6 +15,11 @@ while true; do
             fi
         fi
     done
+    echo "Queued Jobs:"
+    for queued in "$QUEUE_DIR"/*.run; do
+        if [[ -f "$queued" ]]; then
+            echo "⏳ $(basename "$queued" .run)"
+        fi
+    done
     sleep "$WATCH_REFRESH_INTERVAL"
 done
-

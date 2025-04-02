@@ -1,9 +1,13 @@
 #!/bin/bash
 
-# Default config file path (same directory as this script)
-SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+# Directory setup
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 MODULES_DIR="$SCRIPT_DIR/modules"
 CONFIG_FILE="$SCRIPT_DIR/job_scheduler.config"
+SCHEDULER_LOG="$SCRIPT_DIR/scheduler.log"
+
+# Log function
+log_action() { echo "$(date '+%Y-%m-%d %H:%M:%S') - $*" >> "$SCHEDULER_LOG"; }
 
 # Load custom config if provided
 if [[ "$1" == "--config" ]]; then
@@ -20,8 +24,10 @@ fi
 if [[ ! -f "$CONFIG_FILE" ]]; then
     cat <<EOF > "$CONFIG_FILE"
 # CONFIG FILE: job_scheduler.config
-JOB_DIR=$HOME/job_logs
+JOB_DIR=\$HOME/job_logs
+QUEUE_DIR=\$JOB_DIR/queue
 ARCHIVE_DIR=\$JOB_DIR/archive
+MAX_CONCURRENT_JOBS=4
 ARCHIVE_THRESHOLD=100
 LOG_FILE_NAME="job_XXX.log"
 WATCH_REFRESH_INTERVAL=3
@@ -32,22 +38,26 @@ fi
 # Load config
 source "$CONFIG_FILE"
 
-# Ensure job directories exist
-mkdir -p "$JOB_DIR"
-mkdir -p "$ARCHIVE_DIR"
+# Ensure directories exist
+mkdir -p "$JOB_DIR" || { echo "❌ Failed to create $JOB_DIR"; exit 1; }
+mkdir -p "$QUEUE_DIR" || { echo "❌ Failed to create $QUEUE_DIR"; exit 1; }
+mkdir -p "$ARCHIVE_DIR" || { echo "❌ Failed to create $ARCHIVE_DIR"; exit 1; }
 
 # Execute the corresponding module
 case "$1" in
-    "-run") source "$MODULES_DIR/001-run.mod" "$2" ;;
-    "-status") source "$MODULES_DIR/002-status.mod" ;;
-    "-list") source "$MODULES_DIR/003-list.mod" ;;
-    "-kill") source "$MODULES_DIR/004-kill.mod" "$2" ;;
-    "-archive") source "$MODULES_DIR/005-archive.mod" ;;
-    "-watch") source "$MODULES_DIR/006-watch.mod" "$2" ;;
-    "--help") source "$MODULES_DIR/000-help.mod" ;;
+    "-srun") source "$MODULES_DIR/core/srun.mod" "$2" ;;
+    "-qrun") source "$MODULES_DIR/core/qrun.mod" "$2" ;;
+    "-status") source "$MODULES_DIR/monitoring/status.mod" ;;
+    "-list") source "$MODULES_DIR/monitoring/list.mod" ;;
+    "-kill") source "$MODULES_DIR/control/kill.mod" "$2" ;;
+    "-archive") source "$MODULES_DIR/control/archive.mod" ;;
+    "-watch") source "$MODULES_DIR/monitoring/watch.mod" "$2" ;;
+    "--help") source "$MODULES_DIR/help.mod" ;;
     *)
-        echo "❌ Unrecognized command: '$1'. Use 'job_scheduler --help' for valid commands."
+        echo "❌ Unrecognized command: '$1'. Run 'job_scheduler --help' for usage info."
         exit 1
         ;;
 esac
 
+# Process queue after commands that might affect it
+[[ "$1" =~ ^(-qrun|-kill|-archive)$ ]] && source "$MODULES_DIR/utilities/queue.mod"

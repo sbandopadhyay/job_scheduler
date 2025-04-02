@@ -1,16 +1,18 @@
-# job_scheduler
-A **lightweight, modular job scheduler** for managing background jobs on a **single workstation**.  
-Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**, `job_scheduler` provides **job tracking, logging, monitoring, and easy execution**.
+# Job Scheduler
+
+A **lightweight, modular job scheduler** for managing background jobs on a **single workstation**. Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**, `job_scheduler` provides **job tracking, logging, monitoring, queuing, and easy execution**.
 
 ## 🚀 Features
-✅ **Start & track jobs** (`-run <job>.run`)  
-✅ **List running & completed jobs** (`-status`, `list`)  
-✅ **Kill jobs easily** (`-kill <job_id/all>`)  
-✅ **Monitor jobs in real-time** (`-watch <job_id/all>`)  
-✅ **Automatic job logging** (`job_001.log`, `job_002.log`, etc.)  
-✅ **Auto-archive completed jobs** (`-archive` command)  
-✅ **Fully modular** (`modules/` folder for each command)  
-✅ **Configurable settings** (`job_scheduler.config`)  
+✅ **Immediate Job Execution** (`-srun <job>.run`)  
+✅ **Queued Job Execution** (`-qrun <job>.run`, respects concurrent job limits)  
+✅ **Track Running & Queued Jobs** (`-status`)  
+✅ **List All Jobs** (`-list`, shows running, queued, and completed jobs)  
+✅ **Kill Jobs Easily** (`-kill <job_id/all>`)  
+✅ **Monitor Jobs in Real-Time** (`-watch <job_id/all>`)  
+✅ **Automatic Job Logging** (`job_001.log`, `job_002.log`, etc.)  
+✅ **Auto-Archive Completed Jobs** (`-archive` command)  
+✅ **Fully Modular Design** (`modules/` folder for each command)  
+✅ **Configurable Settings** (`job_scheduler.config`)  
 
 ## 📂 Folder Structure
 
@@ -18,13 +20,22 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 - ├── job_scheduler          # Main script
 - ├── job_scheduler.config   # Config file (user settings)
 - └── modules/               # Stores individual command scripts
-- -   ├── 001-run.mod
-- -   ├── 002-status.mod
-- -   ├── 003-list.mod
-- -   ├── 004-kill.mod
-- -   ├── 005-archive.mod
-- -   ├── 006-watch.mod
-- -   └── 007-help.mod
+- -    ├── help.mod           # Help command
+- - -   ├── core/              # Core execution modules
+- - -   │   ├── srun.mod       # Immediate job execution
+- - -   │   └── qrun.mod       # Queued job execution
+- - -   ├── utilities/         # Utility modules
+- - -   │   └── queue.mod      # Queue management
+- - -   ├── monitoring/        # Monitoring modules
+- - -   │   ├── status.mod     # Job status
+- - -   │   ├── list.mod       # Job listing
+- - -   │   └── watch.mod      # Real-time monitoring
+- - -   └── control/           # Control modules
+- - -       ├── kill.mod       # Job termination
+- - -       └── archive.mod    # Job archiving
+
+
+
 
 
 ## 🛠 Installation & Setup
@@ -54,9 +65,14 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
    echo "mpirun -np 4 ./mpi_test" > myjob.run
    ```
 
-   - Start the job:
+   - Start immediately:
    ```bash
-   job_scheduler -run myjob.run
+   job_scheduler -srun myjob.run
+   ```
+
+   - Start with queuing:
+   ```bash
+   job_scheduler -qrun myjob.run
    ```
 
 2. **Checking Job Status**
@@ -67,9 +83,10 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
    
    - Example Output:
    ```scss
-   🔍 Checking running jobs...
+   Running Jobs:
    ✅ job_001 is running (PID: 12345)
-   📌 Log file: job_logs/job_001/job_001.log
+   Queued Jobs:
+   ⏳ job_002
    ```
 
 3. **Listing All Jobs**
@@ -81,8 +98,12 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
    - Example Output:
    ```scss
    📜 Listing all jobs...
+   Running Jobs:
    ✅ job_001 (Active)
-   ❌ job_002 (Completed)
+   Queued Jobs:
+   ⏳ job_002 (Queued)
+   Completed Jobs:
+   ❌ job_003 (Completed)
    ```
 
 4. **Killing a Job**
@@ -123,7 +144,7 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 | 🔥 **Easy job termination** | ✅ Yes | ❌ No | ❌ No |
 | 🟢 **Live monitoring**      | ✅ Yes | ❌ No | ❌ No |
 | 🟠 **Auto-archives jobs**   | ✅ Yes | ❌ No | ❌ No |
-
+| 🟠 **Queue management**     | ✅ Yes | ❌ No | ❌ No |
 
 
 
@@ -132,7 +153,7 @@ Designed as a simple alternative to complex schedulers like **Slurm** or **PBS**
 ## 🔮 To-do List
 
    - Add job priority levels (low, normal, high)
-   - Web-based dashboard for job management
+   - Implement a web-based dashboard for job management
    - Python API integration
    - More detailed resource monitoring (CPU, RAM, Disk)
 
