@@ -15,25 +15,25 @@ A **lightweight, modular job scheduler** for managing background jobs on a **sin
 ✅ **Configurable Settings** (`job_scheduler.config`)  
 
 ## 📂 Folder Structure
-
-- job_scheduler/             # Main directory
-- ├── job_scheduler          # Main script
-- ├── job_scheduler.config   # Config file (user settings)
-- └── modules/               # Stores individual command scripts
-- -    ├── help.mod           # Help command
-- -    ├── core/              # Core execution modules
-- -    │   ├── srun.mod       # Immediate job execution
-- -    │   └── qrun.mod       # Queued job execution
-- -    ├── utilities/         # Utility modules
-- -    │   └── queue.mod      # Queue management
-- -    ├── monitoring/        # Monitoring modules
-- -    │   ├── status.mod     # Job status
-- -    │   ├── list.mod       # Job listing
-- -    │   └── watch.mod      # Real-time monitoring
-- -    └── control/           # Control modules
-- -        ├── kill.mod       # Job termination
-- -        └── archive.mod    # Job archiving
-
+   ```bash
+  job_scheduler/             # Main directory
+  ├── job_scheduler          # Main script
+  ├── job_scheduler.config   # Config file (user settings)
+  └── modules/               # Stores individual command scripts
+     ├── help.mod           # Help command
+     ├── core/              # Core execution modules
+     │   ├── srun.mod       # Immediate job execution
+     │   └── qrun.mod       # Queued job execution
+     ├── utilities/         # Utility modules
+     │   └── queue.mod      # Queue management
+     ├── monitoring/        # Monitoring modules
+     │   ├── status.mod     # Job status
+     │   ├── list.mod       # Job listing
+     │   └── watch.mod      # Real-time monitoring
+     └── control/           # Control modules
+         ├── kill.mod       # Job termination
+         └── archive.mod    # Job archiving
+   ```
 
 
 
